@@ -19,7 +19,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> findAll(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, Sort.by("id").descending());
         return postRepository.findAll(pageable);
     }
 
