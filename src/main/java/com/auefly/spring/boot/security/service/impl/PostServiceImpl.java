@@ -24,13 +24,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void savePost(PostDto postDto) {
+    public Post savePost(PostDto postDto) {
         Post post = new Post();
         post.setContent(postDto.getContent());
         post.setTitle(postDto.getTitle());
         post.setCover(postDto.getCover());
         post.setDescription(postDto.getDescription());
         post.setUser(new User(postDto.getUserId()));
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 }
