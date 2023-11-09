@@ -5,23 +5,37 @@ import com.auefly.spring.boot.security.entity.Post;
 import com.auefly.spring.boot.security.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 public class PostController {
     @Autowired
     PostService postService;
 
+    @Value("${custom.upload.base-path}")
+    String uploadBasePath;
+
+    @Value("${custom.upload.post-cover-dir-under-base-path}")
+    String postCoverDirPostUnderBasePath;
+
     @GetMapping("/admin/posts")
     String post(Model model,
-              @RequestParam Optional<Integer> page,
-              @RequestParam Optional<Integer> size) {
+                @RequestParam Optional<Integer> page,
+                @RequestParam Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
         Page<Post> pageContent = postService.findAll(currentPage, pageSize);
@@ -36,10 +50,23 @@ public class PostController {
     }
 
     @PostMapping("/admin/posts")
-    String posts(@Valid @ModelAttribute("post") PostDto postDto,
-                 BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+    String posts(@RequestParam(name = "coverFile", required = false) MultipartFile coverFile,
+                 @Valid @ModelAttribute("post") PostDto postDto,
+                 BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()) {
             return "backend/post/create";
+        }
+        if (coverFile != null && !coverFile.isEmpty()) {
+            File dir = new File(uploadBasePath + File.separator + postCoverDirPostUnderBasePath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            String originalFile = coverFile.getOriginalFilename();
+            assert originalFile != null;
+            String suffix = originalFile.substring(originalFile.lastIndexOf("."));
+            String newFileName = UUID.randomUUID() + suffix;
+            coverFile.transferTo(new File(dir.getAbsolutePath() + File.separator + newFileName));
+            postDto.setCover(postCoverDirPostUnderBasePath + File.separator + newFileName);
         }
         postService.savePost(postDto);
         return "redirect:/admin/posts";
