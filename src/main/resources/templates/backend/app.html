@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" th:fragment="layout(title, main_content)" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="zh" th:fragment="layout(title, main_content, js)" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,6 +133,7 @@
     <!-- ./wrapper -->
 
     <script type="module" th:src="@{/build/assets/app.js}" src="/build/assets/app.js"></script>
+    <th:block th:replace="${js}"/>
 
 </body>
 </html>
