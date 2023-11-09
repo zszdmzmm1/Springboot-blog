@@ -18,4 +18,9 @@ spring:
 
 backend:
   menus:
-    - {name: Users, url: /admin/users, icon: users}
+    - name: "Users"
+      url: "/admin/users"
+      icon: "users"
+    - name: "Posts"
+      url: "/admin/posts"
+      icon: "file-alt"
