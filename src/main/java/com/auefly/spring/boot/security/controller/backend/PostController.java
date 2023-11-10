@@ -3,21 +3,21 @@ package com.auefly.spring.boot.security.controller.backend;
 import com.auefly.spring.boot.security.dto.PostDto;
 import com.auefly.spring.boot.security.entity.Post;
 import com.auefly.spring.boot.security.service.PostService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -70,5 +70,11 @@ public class PostController {
         }
         postService.savePost(postDto);
         return "redirect:/admin/posts";
+    }
+
+    @PostMapping("/admin/posts/delete")
+    @ResponseBody
+    void delete(@RequestParam List<Long> ids) {
+        postService.deleteByIds(ids);
     }
 }

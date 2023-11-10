@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostServiceImpl implements PostService {
     @Autowired
@@ -32,5 +34,10 @@ public class PostServiceImpl implements PostService {
         post.setDescription(postDto.getDescription());
         post.setUser(new User(postDto.getUserId()));
         return postRepository.save(post);
+    }
+
+    @Override
+    public void deleteByIds(List<Long> ids) {
+        postRepository.deleteAllById(ids);
     }
 }

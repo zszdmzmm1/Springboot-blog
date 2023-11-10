@@ -64,7 +64,20 @@
         }
 
         function do_delete(ids) {
-            console.log(ids);
+            let isConfirm = window.confirm("是否确定删除？")
+            if(isConfirm){
+                let sId = String(ids);
+                $.post({
+                    url: "/admin/posts/delete",
+                    data: {
+                        ids: sId
+                    }
+                })
+                    .done(function (){
+                        alert("删除成功！")
+                        window.location.reload();
+                    })
+            }
         }
     </script>
 </div>
