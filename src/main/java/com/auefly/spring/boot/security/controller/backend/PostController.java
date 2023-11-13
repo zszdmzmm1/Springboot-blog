@@ -56,18 +56,7 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return "backend/post/create";
         }
-        if (coverFile != null && !coverFile.isEmpty()) {
-            File dir = new File(uploadBasePath + File.separator + postCoverDirPostUnderBasePath);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            String originalFile = coverFile.getOriginalFilename();
-            assert originalFile != null;
-            String suffix = originalFile.substring(originalFile.lastIndexOf("."));
-            String newFileName = UUID.randomUUID() + suffix;
-            coverFile.transferTo(new File(dir.getAbsolutePath() + File.separator + newFileName));
-            postDto.setCover(File.separator + postCoverDirPostUnderBasePath + File.separator + newFileName);
-        }
+        doPostCover(coverFile, postDto);
         postService.savePost(postDto);
         return "redirect:/admin/posts";
     }
@@ -99,14 +88,33 @@ public class PostController {
 
     @PutMapping("/admin/post/update")
     @PreAuthorize("#postDto.userId == authentication.principal.user.id")
-    String update(@Valid @ModelAttribute("post") PostDto postDto, BindingResult result, Model model) {
+    String update(@RequestParam(name = "coverFile", required = false) MultipartFile coverFile,
+                  @Valid @ModelAttribute("post") PostDto postDto,
+                  BindingResult result, Model model) throws IOException {
         if (result.hasErrors()) {
             model.addAttribute("post", postDto);
             return "backend/post/edit";
         }
 
+        doPostCover(coverFile, postDto);
+
         postService.savePost(postDto);
 
         return "redirect:/admin/posts";
+    }
+
+    private void doPostCover(MultipartFile coverFile, PostDto postDto) throws IOException {
+        if (coverFile != null && !coverFile.isEmpty()) {
+            File dir = new File(uploadBasePath + File.separator + postCoverDirPostUnderBasePath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            String originalFile = coverFile.getOriginalFilename();
+            assert originalFile != null;
+            String suffix = originalFile.substring(originalFile.lastIndexOf("."));
+            String newFileName = UUID.randomUUID() + suffix;
+            coverFile.transferTo(new File(dir.getAbsolutePath() + File.separator + newFileName));
+            postDto.setCover(File.separator + postCoverDirPostUnderBasePath + File.separator + newFileName);
+        }
     }
 }
