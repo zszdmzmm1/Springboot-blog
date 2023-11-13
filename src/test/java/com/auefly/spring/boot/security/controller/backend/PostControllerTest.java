@@ -135,4 +135,38 @@ public class PostControllerTest extends WithMockUserForAdminBaseTest {
 
         postRepository.delete(po.get());
     }
+
+    @Test
+    @DisplayName("未使用正确用户无法更新对应文章")
+    void updatePostThatNotMyOwn(@Autowired PostRepository postRepository) throws Exception {
+        String title = "title-" + UUID.randomUUID();
+        String authorId = "2";
+        mockMvc.perform(MockMvcRequestBuilders.post("/admin/posts")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", "")
+                        .param("userId", authorId)
+                        .param("title", title)
+                        .param("content", "content-" + UUID.randomUUID())
+                )
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+        ;
+        Optional<Post> po = postRepository.findFirstByTitle(title);
+        Assertions.assertTrue(po.isPresent());
+        Post post = po.get();
+
+        String descriptionUpdated = "description--updated";
+        String contendUpdated = post.getContent() + "--updated";
+        mockMvc.perform(MockMvcRequestBuilders.put("/admin/post/update")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", post.getId().toString())
+                        .param("title", post.getTitle())
+                        .param("userId", authorId)
+                        .param("description", descriptionUpdated)
+                        .param("content", contendUpdated)
+                )
+                .andExpect(MockMvcResultMatchers.status().isForbidden())
+        ;
+
+        postRepository.delete(po.get());
+    }
 }
