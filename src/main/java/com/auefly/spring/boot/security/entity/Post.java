@@ -3,11 +3,13 @@ package com.auefly.spring.boot.security.entity;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@DynamicUpdate
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
