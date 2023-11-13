@@ -74,10 +74,11 @@ public class PostController {
         return "redirect:/admin/posts";
     }
 
-    @PostMapping("/admin/posts/delete")
+    @DeleteMapping("/admin/post/destroy")
     @ResponseBody
-    void delete(@RequestParam List<Long> ids) {
+    String delete(@RequestParam(name = "ids[]") List<Long> ids) {
         postService.deleteByIds(ids);
+        return "done";
     }
 
     @GetMapping("/admin/post/edit/{id}")

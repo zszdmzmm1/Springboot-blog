@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -168,5 +170,41 @@ public class PostControllerTest extends WithMockUserForAdminBaseTest {
         ;
 
         postRepository.delete(po.get());
+    }
+
+    @Test
+    @DisplayName("测试批量删除")
+    void batchDelete(@Autowired PostRepository postRepository) throws Exception {
+        List<Long> ids = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            String title = "title-" + UUID.randomUUID();
+            mockMvc.perform(MockMvcRequestBuilders.post("/admin/posts")
+                            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                            .param("id", "")
+                            .param("userId", "1")
+                            .param("title", title)
+                            .param("content", "content-" + UUID.randomUUID())
+                    )
+                    .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+            ;
+            Optional<Post> po = postRepository.findFirstByTitle(title);
+            Assertions.assertTrue(po.isPresent());
+            Post post = po.get();
+            ids.add(post.getId());
+        }
+
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/admin/post/destroy")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("ids[]", ids.get(0).toString())
+                        .param("ids[]", ids.get(1).toString())
+                )
+                .andExpect(MockMvcResultMatchers.content().string("done"))
+        ;
+
+        for (int i = 0; i < 2; i++) {
+            Optional<Post> op = postRepository.findById(ids.get(i));
+            Assertions.assertTrue(op.isEmpty());
+        }
     }
 }

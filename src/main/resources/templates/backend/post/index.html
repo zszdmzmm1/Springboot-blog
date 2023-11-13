@@ -66,16 +66,23 @@
         function do_delete(ids) {
             let isConfirm = window.confirm("是否确定删除？")
             if(isConfirm){
-                let sId = String(ids);
-                $.post({
-                    url: "/admin/posts/delete",
+                $.ajax({
+                    url: "/admin/post/destroy",
                     data: {
-                        ids: sId
-                    }
+                        ids: ids
+                    },
+                    type: "DELETE"
                 })
-                    .done(function (){
-                        alert("删除成功！")
-                        window.location.reload();
+                    .done(function (response){
+                        if('done' === response) {
+                            alert("删除成功！");
+                            window.location.reload();
+                        } else {
+                            alert(response);
+                        }
+                    })
+                    .fail(function () {
+                        alert("删除失败！");
                     })
             }
         }
