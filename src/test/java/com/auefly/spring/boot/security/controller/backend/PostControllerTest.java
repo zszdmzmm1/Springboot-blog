@@ -3,16 +3,20 @@ package com.auefly.spring.boot.security.controller.backend;
 import com.auefly.spring.boot.security.controller.WithMockUserForAdminBaseTest;
 import com.auefly.spring.boot.security.entity.Post;
 import com.auefly.spring.boot.security.repository.PostRepository;
-import com.auefly.spring.boot.security.service.PostService;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -65,4 +69,33 @@ public class PostControllerTest extends WithMockUserForAdminBaseTest {
         Assertions.assertTrue(post.isPresent());
         postRepository.delete(post.get());
     }
+
+    @Test
+    @DisplayName("测试图片封面上传")
+    void storeWithCoverImage(@Autowired PostRepository postRepository, @Autowired Environment env) throws Exception {
+        String title = "title_" + UUID.randomUUID();
+        MockMultipartFile coverFile = new MockMultipartFile("coverFile", "cover.png", MediaType.IMAGE_PNG_VALUE, new byte[]{1, 2, 3});
+        mockMvc.perform(MockMvcRequestBuilders
+                        .multipart("/admin/posts")
+                        //.contentType(MediaType.MULTIPART_FORM_DATA)
+                        .file(coverFile)
+                        .param("id", "")
+                        .param("userId", "1")
+                        .param("title", title)
+                        .param("content", "content-" + UUID.randomUUID())
+                )
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+        ;
+
+        Optional<Post> po = postRepository.findFirstByTitle(title);
+        Assertions.assertTrue(po.isPresent());
+
+        String cover = po.get().getCover();
+        File coverOnDisk = new File(env.getProperty("custom.upload.base-path") + File.separator + cover);
+        Assertions.assertTrue(Files.exists(coverOnDisk.toPath()));
+        Assertions.assertTrue(coverOnDisk.delete());
+
+        postRepository.delete(po.get());
+    }
+
 }
