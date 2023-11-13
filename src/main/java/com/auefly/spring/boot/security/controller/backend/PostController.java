@@ -2,6 +2,7 @@ package com.auefly.spring.boot.security.controller.backend;
 
 import com.auefly.spring.boot.security.dto.PostDto;
 import com.auefly.spring.boot.security.entity.Post;
+import com.auefly.spring.boot.security.exception.PostNotFoundException;
 import com.auefly.spring.boot.security.service.PostService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -76,5 +77,29 @@ public class PostController {
     @ResponseBody
     void delete(@RequestParam List<Long> ids) {
         postService.deleteByIds(ids);
+    }
+
+    @GetMapping("/admin/post/edit/{id}")
+    String edit(@PathVariable Long id, Model model) {
+        Optional<Post> optionalPost = postService.findById(id);
+        if (optionalPost.isEmpty()) {
+            throw new PostNotFoundException();
+        } else {
+            Post post = optionalPost.get();
+            model.addAttribute("post", post);
+            return "backend/post/edit";
+        }
+    }
+
+    @PutMapping("/admin/post/update")
+    String update(@Valid @ModelAttribute("post") PostDto postDto, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("post", postDto);
+            return "backend/post/edit";
+        }
+
+        postService.savePost(postDto);
+
+        return "redirect:/admin/posts";
     }
 }

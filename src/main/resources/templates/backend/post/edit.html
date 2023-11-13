@@ -1,0 +1,13 @@
+<div th:replace="~{backend/app :: layout(更新post, ~{::#main_card}, _)}" xmlns:th="http://www.thymeleaf.org">
+    <div class="content" id="main_card">
+        <div class="card">
+            <form id="post-form" method="post" action="#" th:action="@{/admin/post/update}" enctype="multipart/form-data" th:object="${post}">
+                <div th:replace="~{fragment::#post-form-item}"></div>
+                <input type="hidden" name="_method" value="PUT">
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">更新</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

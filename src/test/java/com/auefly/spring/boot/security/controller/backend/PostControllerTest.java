@@ -98,4 +98,41 @@ public class PostControllerTest extends WithMockUserForAdminBaseTest {
         postRepository.delete(po.get());
     }
 
+
+    @Test
+    @DisplayName("update测试")
+    void update(@Autowired PostRepository postRepository) throws Exception {
+        String title = "title-" + UUID.randomUUID();
+        mockMvc.perform(MockMvcRequestBuilders.post("/admin/posts")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", "")
+                        .param("userId", "1")
+                        .param("title", title)
+                        .param("content", "content-" + UUID.randomUUID())
+                )
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+        ;
+        Optional<Post> po = postRepository.findFirstByTitle(title);
+        Assertions.assertTrue(po.isPresent());
+        Post post = po.get();
+
+        String descriptionUpdated = "description--updated";
+        String contendUpdated = post.getContent() + "--updated";
+        mockMvc.perform(MockMvcRequestBuilders.put("/admin/post/update")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", post.getId().toString())
+                        .param("title", post.getTitle())
+                        .param("userId", "1")
+                        .param("description", descriptionUpdated)
+                        .param("content", contendUpdated)
+                )
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+        ;
+
+        Post postUpdated = postRepository.findFirstByTitle(post.getTitle()).get();
+        Assertions.assertEquals(descriptionUpdated, postUpdated.getDescription());
+        Assertions.assertEquals(contendUpdated, postUpdated.getContent());
+
+        postRepository.delete(po.get());
+    }
 }

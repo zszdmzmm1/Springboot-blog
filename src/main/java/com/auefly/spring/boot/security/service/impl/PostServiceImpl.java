@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -28,6 +29,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post savePost(PostDto postDto) {
         Post post = new Post();
+        post.setId(postDto.getId());
         post.setContent(postDto.getContent());
         post.setTitle(postDto.getTitle());
         post.setCover(postDto.getCover());
@@ -39,5 +41,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deleteByIds(List<Long> ids) {
         postRepository.deleteAllById(ids);
+    }
+
+    @Override
+    public Optional<Post> findById(Long id) {
+        return postRepository.findById(id);
     }
 }

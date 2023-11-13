@@ -5,6 +5,7 @@ import com.auefly.spring.boot.security.entity.Post;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PostService {
     Page<Post> findAll(int pageNumber, int pageSize);
@@ -12,4 +13,6 @@ public interface PostService {
     Post savePost(PostDto postDto);
 
     void deleteByIds(List<Long> ids);
+
+    Optional<Post> findById(Long id);
 }
