@@ -207,4 +207,30 @@ public class PostControllerTest extends WithMockUserForAdminBaseTest {
             Assertions.assertTrue(op.isEmpty());
         }
     }
+
+
+    @Test
+    @DisplayName("测试删除post")
+    void delete(@Autowired PostRepository postRepository) throws Exception {
+        String title = "title-" + UUID.randomUUID();
+        mockMvc.perform(MockMvcRequestBuilders.post("/admin/posts")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", "")
+                        .param("userId", "1")
+                        .param("title", title)
+                        .param("content", "content-" + UUID.randomUUID())
+                )
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+        ;
+        Optional<Post> po = postRepository.findFirstByTitle(title);
+        Assertions.assertTrue(po.isPresent());
+        Post post = po.get();
+        Long id = post.getId();
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/admin/post/destroy/" + id))
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/admin/posts"))
+        ;
+        Optional<Post> op = postRepository.findFirstByTitle(title);
+        Assertions.assertTrue(op.isEmpty());
+    }
 }

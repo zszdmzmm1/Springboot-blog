@@ -28,8 +28,12 @@
                                 <a href="#" class="text-sm" th:href="@{'/admin/post/edit/' + ${post.id}}">
                                     Edit
                                 </a>
-                                <a class="text-sm pl-2" href="#">
+                                <a class="text-sm pl-2" href="#" th:href="@{|admin/post/delete${post.id}|}"
+                                   th:onclick="|event.preventDefault(); if(confirm('是否确定删除?')) document.getElementById('destroy-form-${post.id}').submit();|">
                                     Remove
+                                    <form th:id="${'destroy-form-' + post.id}" th:action="@{'/admin/post/destroy/' + ${post.id}}" th:method="DELETE" style="display: none;">
+
+                                    </form>
                                 </a>
                             </td>
                         </tr>

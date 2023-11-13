@@ -4,12 +4,10 @@ import com.auefly.spring.boot.security.dto.PostDto;
 import com.auefly.spring.boot.security.entity.Post;
 import com.auefly.spring.boot.security.exception.PostNotFoundException;
 import com.auefly.spring.boot.security.service.PostService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,6 +77,12 @@ public class PostController {
     String delete(@RequestParam(name = "ids[]") List<Long> ids) {
         postService.deleteByIds(ids);
         return "done";
+    }
+
+    @DeleteMapping("/admin/post/destroy/{id}")
+    String delete(@PathVariable Long id) {
+        postService.deleteByid(id);
+        return "redirect:/admin/posts";
     }
 
     @GetMapping("/admin/post/edit/{id}")
