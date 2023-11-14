@@ -78,7 +78,12 @@
             enable: false,
           },
           upload: {
-            url: "/backend/images/upload-form-vidtor"
+            url: "/backend/images/upload-form-vidtor",
+            //fieldName: 'file[]',
+            max: 10 * 1024 * 1024,
+            headers: {
+              'accept': 'application/json',
+            },
           }
         })
 
