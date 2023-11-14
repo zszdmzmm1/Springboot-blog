@@ -1,7 +1,8 @@
-<div th:replace="~{backend/app :: layout(添加post, ~{::#main_card}, _)}" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{backend/app :: layout(添加post, ~{fragment :: #css_content}, ~{::#main_card}, ~{fragment :: #js_content})}" xmlns:th="http://www.thymeleaf.org">
     <div class="content" id="main_card">
         <div class="card">
-            <form id="post-form" method="post" action="#" th:action="@{/admin/posts}" enctype="multipart/form-data" th:object="${post}">
+            <form id="post-form" method="post" action="#" th:action="@{/admin/posts}" enctype="multipart/form-data"
+                  th:object="${post}">
                 <div th:replace="~{fragment::#post-form-item}"></div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">保存</button>

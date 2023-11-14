@@ -1,4 +1,4 @@
-<div th:replace="~{ backend/app :: layout(admin-posts, ~{::#main_card}, ~{::#js})}" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{ backend/app :: layout(admin-posts, _, ~{::#main_card}, ~{::#js})}" xmlns:th="http://www.thymeleaf.org">
     <section class="content" id="main_card">
         <div class="card">
             <div class="card-body table-responsive p-0">
@@ -31,7 +31,9 @@
                                 <a class="text-sm pl-2" href="#" th:href="@{|admin/post/delete${post.id}|}"
                                    th:onclick="|event.preventDefault(); if(confirm('是否确定删除?')) document.getElementById('destroy-form-${post.id}').submit();|">
                                     Remove
-                                    <form th:id="${'destroy-form-' + post.id}" th:action="@{'/admin/post/destroy/' + ${post.id}}" th:method="DELETE" style="display: none;">
+                                    <form th:id="${'destroy-form-' + post.id}"
+                                          th:action="@{'/admin/post/destroy/' + ${post.id}}" th:method="DELETE"
+                                          style="display: none;">
 
                                     </form>
                                 </a>
@@ -69,7 +71,7 @@
 
         function do_delete(ids) {
             let isConfirm = window.confirm("是否确定删除？")
-            if(isConfirm){
+            if (isConfirm) {
                 $.ajax({
                     url: "/admin/post/destroy",
                     data: {
@@ -77,8 +79,8 @@
                     },
                     type: "DELETE"
                 })
-                    .done(function (response){
-                        if('done' === response) {
+                    .done(function (response) {
+                        if ('done' === response) {
                             alert("删除成功！");
                             window.location.reload();
                         } else {

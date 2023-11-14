@@ -1,4 +1,4 @@
-<div th:replace="~{backend/app :: layout(更新post, ~{::#main_card}, _)}" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{backend/app :: layout(更新post, ~{fragment :: #css_content}, ~{::#main_card}, ~{fragment :: #js_content})}" xmlns:th="http://www.thymeleaf.org">
     <div class="content" id="main_card">
         <div class="card">
             <form id="post-form" method="post" action="#" th:action="@{/admin/post/update}" enctype="multipart/form-data" th:object="${post}">
