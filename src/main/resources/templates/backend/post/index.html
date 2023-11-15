@@ -41,13 +41,13 @@
                         </tr>
                     </tbody>
                 </table>
-                <div th:replace="~{fragment::#pagination-container}"></div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-default" onclick="batch_delete();">Batch Delete</button>
             </div>
         </div>
+        <div th:replace="~{fragment::#pagination-container}"></div>
     </section>
     <script id="js">
         function toggle_checkbox() {
