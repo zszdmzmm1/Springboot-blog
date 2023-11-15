@@ -233,4 +233,21 @@ public class PostControllerTest extends WithMockUserForAdminBaseTest {
         Optional<Post> op = postRepository.findFirstByTitle(title);
         Assertions.assertTrue(op.isEmpty());
     }
+
+    @Test
+    @DisplayName("创建新post时，使用错误类型(type)")
+    void storeIncorrectType() throws Exception {
+        String incorrectType = "Incorrect-Type";
+        mockMvc.perform(MockMvcRequestBuilders.post("/admin/posts")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", "")
+                        .param("userId", "1")
+                        .param("title", "title-" + UUID.randomUUID())
+                        .param("content", "content-" + UUID.randomUUID())
+                        .param("type", incorrectType)
+                )
+                .andExpect(MockMvcResultMatchers.view().name("backend/post/create"))
+                .andExpect(MockMvcResultMatchers.model().attributeHasFieldErrorCode("post", "type", "Pattern"))
+        ;
+    }
 }

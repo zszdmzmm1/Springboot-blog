@@ -1,6 +1,7 @@
 package com.auefly.spring.boot.security.dto;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -13,6 +14,9 @@ public class PostDto {
 
     @NotEmpty
     private String content;
+
+    @Pattern(regexp = "post|resource")
+    private String type = "post";
 
     private String description;
 

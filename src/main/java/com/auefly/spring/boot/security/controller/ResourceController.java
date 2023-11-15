@@ -21,8 +21,8 @@ public class ResourceController {
 
     @GetMapping("/resources")
     String index(@RequestParam("page") Optional<Integer> page,
-                    @RequestParam("size") Optional<Integer> size,
-                    Model model){
+                 @RequestParam("size") Optional<Integer> size,
+                 Model model) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
         Page<Post> optionalPost = postService.findAllResources(currentPage, pageSize);
@@ -34,7 +34,8 @@ public class ResourceController {
     String show(@PathVariable Long id, Model model) {
         Optional<Post> optionalPost = postService.findById(id);
 
-        if(optionalPost.isEmpty() || !optionalPost.get().isStatus()) {
+        if (optionalPost.isEmpty() || !optionalPost.get().isStatus()
+                || !"resource".equals(optionalPost.get().getType())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
