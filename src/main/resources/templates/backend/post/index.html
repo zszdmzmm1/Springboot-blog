@@ -26,10 +26,12 @@
                             <td th:text="${post.created_at}">post created_at</td>
                             <td class="center">
                                 <a href="#" class="text-sm" th:href="@{'/admin/post/edit/' + ${post.id}}">
+                                    <i class="fas fa-edit"></i>
                                     Edit
                                 </a>
                                 <a class="text-sm pl-2" href="#" th:href="@{|admin/post/delete${post.id}|}"
                                    th:onclick="|event.preventDefault(); if(confirm('是否确定删除?')) document.getElementById('destroy-form-${post.id}').submit();|">
+                                    <i class="fas fa-trash"></i>
                                     Remove
                                     <form th:id="${'destroy-form-' + post.id}"
                                           th:action="@{'/admin/post/destroy/' + ${post.id}}" th:method="DELETE"
