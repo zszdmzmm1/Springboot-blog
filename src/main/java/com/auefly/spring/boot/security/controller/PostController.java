@@ -25,7 +25,7 @@ public class PostController {
                  @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<Post> pageContent = postService.findAll(currentPage, pageSize);
+        Page<Post> pageContent = postService.findAllPosts(currentPage, pageSize);
         model.addAttribute("page", pageContent);
         return "post/index";
     }

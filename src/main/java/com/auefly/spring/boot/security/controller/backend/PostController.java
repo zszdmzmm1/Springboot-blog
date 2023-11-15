@@ -70,7 +70,7 @@ public class PostController {
 
     @DeleteMapping("/admin/post/destroy/{id}")
     String delete(@PathVariable Long id) {
-        postService.deleteByid(id);
+        postService.deleteById(id);
         return "redirect:/admin/posts";
     }
 

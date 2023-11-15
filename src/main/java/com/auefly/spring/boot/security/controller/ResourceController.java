@@ -17,7 +17,7 @@ public class ResourceController {
     PostService postService;
 
     @GetMapping("/resources")
-    String resource(@RequestParam("page") Optional<Integer> page,
+    String index(@RequestParam("page") Optional<Integer> page,
                     @RequestParam("size") Optional<Integer> size,
                     Model model){
         int currentPage = page.orElse(1);
