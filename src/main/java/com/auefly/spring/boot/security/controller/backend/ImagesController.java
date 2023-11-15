@@ -44,7 +44,7 @@ public class ImagesController {
                 } catch (IOException e) {
                     errorFiles.add(originalFile);
                 }
-                imageMap.put(originalFile, File.separator + fromVditorDirUnderBasePath + File.separator + newFileName);
+                imageMap.put(originalFile, "/" + fromVditorDirUnderBasePath + "/" + newFileName);
             }
         }
         Data data = new Data();
@@ -99,7 +99,7 @@ public class ImagesController {
             r.setMsg("外部图片链接已成功上传到服务器");
             r.setCode(0);
             data.put("originalURL", url);
-            data.put("url", "/" + fromVditorDirUnderBasePath + File.separator + newFilename);
+            data.put("url", "/" + fromVditorDirUnderBasePath + "/" + newFilename);
             r.setData(data);
         } catch (IOException e) {
             r.setCode(-1);
