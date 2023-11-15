@@ -64,6 +64,12 @@
                                 博客
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a th:class="|nav-link d-flex align-items-center ${requestURI != null && requestURI.startsWith('/resource') ? ' active' : ''}|" href="#" th:href="@{/resources}">
+                                <i class="bi bi-box"></i>
+                                资源
+                            </a>
+                        </li>
 
                         <li sec:authorize="!isAuthenticated()" class="nav-item"><a th:href="@{/login}" href="/login" class="btn btn-sm btn-primary transition-3d-hover my-3 my-lg-0">登录</a>
                         </li>

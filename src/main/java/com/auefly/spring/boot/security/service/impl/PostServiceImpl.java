@@ -57,7 +57,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deleteByid(Long id) {
+    public void deleteById(Long id) {
         postRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Post> findAllPosts(int currentPage, int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
+        return postRepository.findAllByType("post", pageable);
+    }
+
+    @Override
+    public Page<Post> findAllResources(int currentPage, int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("id").descending());
+        return postRepository.findAllByType("resource", pageable);
     }
 }

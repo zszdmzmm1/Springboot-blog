@@ -16,5 +16,9 @@ public interface PostService {
 
     Optional<Post> findById(Long id);
 
-    void deleteByid(Long id);
+    void deleteById(Long id);
+
+    Page<Post> findAllPosts(int currentPage, int pageSize);
+
+    Page<Post> findAllResources(int currentPage, int pageSize);
 }
