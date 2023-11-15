@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class SecurityUser implements UserDetails {
     @Getter
@@ -30,7 +31,7 @@ public class SecurityUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<String> permissions = new ArrayList<>();
-        List<Role> roles = this.user.getRoleList();
+        Set<Role> roles = this.user.getRoleList();
         for (Role role : roles) {
             permissions.add("ROLE_" + role.getName());
             for (Permission permission : role.getPermissionList()) {
