@@ -1,4 +1,4 @@
-<div th:replace="~{ app :: layout (${post.title}, _, ~{::#main_content}) }" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{ app :: layout (${post.title}, _, _, ~{::#main_content}, _) }" xmlns:th="http://www.thymeleaf.org">
   <section class="single-post container" id="main_content">
     <div class="row">
       <div class="col-lg-8">

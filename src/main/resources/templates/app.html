@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="layout(title, header_appendent, main_content)" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="en" th:fragment="layout(title, css, header_appendent, main_content, js)" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +9,7 @@
     <meta name="keywords" content="学,做,学习,实作">
     <link rel="stylesheet" th:href="@{/build/assets/app.css}" href="/build/assets/app.css"/>
     <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"/>
+    <th:block th:replace="${css}"/>
 </head>
 <body class="d-flex flex-column h-100">
     <header>
@@ -113,6 +114,7 @@
         </div>
     </footer>
     <script type="module" th:src="@{/build/assets/app.js}" src="/build/assets/app.js"></script>
+    <th:block th:replace="${js}"/>
 
 </body>
 </html>
