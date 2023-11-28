@@ -58,6 +58,7 @@
       <label for="cover">封面图片</label>
       <div>
         <input type="file" name="coverFile" id="cover" class="d-block">
+        <input th:field="*{cover}" type="hidden" name="cover">
         <img th:if="!${#strings.isEmpty(post.cover)}" th:src="*{cover}" class="img-fluid blog-post-cover mt-2" alt="blog-post-cover">
       </div>
     </div>

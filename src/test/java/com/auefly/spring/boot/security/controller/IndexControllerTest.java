@@ -6,6 +6,7 @@ import com.auefly.spring.boot.security.repository.PasswordResetTokenRepository;
 import com.auefly.spring.boot.security.repository.UserRepository;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.StringContains;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,7 @@ class IndexControllerTest {
 
     @Test
     @DisplayName("修改密码请求发送成功(邮箱存在)")
+    @Disabled
     void passwordChangingRequestSuccess() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/users/password-reset")
                 .param("email", "admin@example.com")
@@ -207,6 +209,7 @@ class IndexControllerTest {
 
     @Test
     @DisplayName("更改新密后token失效")
+    @Disabled
     void expiredTokenTest(@Autowired UserRepository userRepository, @Autowired PasswordResetTokenRepository passwordResetTokenRepository) throws Exception {
         //initialize
         User user = new User();

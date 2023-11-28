@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: "0521"
-    url: jdbc:mysql://localhost:3306/jpa?useTimezone=true&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://8.134.239.156:3306/jpa?useTimezone=true&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
 
   jpa:
     show-sql: true

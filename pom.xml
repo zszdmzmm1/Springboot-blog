@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.auefly</groupId>
-    <artifactId>spring-boot-security</artifactId>
+    <artifactId>spring-boot-blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-security</name>
-    <description>spring-boot-security</description>
+    <name>spring-boot-blog</name>
+    <description>spring-boot-blog</description>
     <properties>
         <java.version>17</java.version>
     </properties>
