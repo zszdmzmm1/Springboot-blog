@@ -74,7 +74,7 @@ public class PostController {
         return "redirect:/admin/posts";
     }
 
-    @GetMapping("/admin/post/edit/{id}")
+    @GetMapping("/admin/posts/edit/{id}")
     String edit(@PathVariable Long id, Model model) {
         Optional<Post> optionalPost = postService.findById(id);
         if (optionalPost.isEmpty()) {

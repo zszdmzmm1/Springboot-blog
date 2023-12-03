@@ -87,7 +87,7 @@
                         data-accordion="false">
                         <li class="nav-item">
                             <a th:href="${menu.url}"
-                               th:class="${requestURI.equals(menu.url)}?'nav-link active':'nav-link'" class="nav-link ">
+                               th:class="${requestURI.contains(menu.url)}?'nav-link active':'nav-link'" class="nav-link ">
                                 <i th:class="|nav-icon fas fa-${menu.icon}|" class="nav-icon fas fa-square"></i>
                                 <p th:text="${menu.name}"></p>
                             </a>
