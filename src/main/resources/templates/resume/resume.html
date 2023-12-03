@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄俊飞的个人简历</title>
+    <link rel="stylesheet" th:href="@{/build/assets/app.css}" href="/build/assets/app.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"/>
+</head>
+<style>
+    .color {
+        color: #54AFE4;
+    }
+
+    li {
+        margin-bottom: 1rem;
+    }
+</style>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHe','Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', sans-serif;">
+    <div class="container mx-auto" style="max-width:700px;">
+        <div class="container-wrapper">
+            <div class="content-header mb-3" style="border-bottom: thick double #54AFE4;">
+                <div class="container-fluid">
+                    <div class="row mb-3">
+                        <div class="display-4 col-12">
+                            <span class="font-weight-bold">黄</span>
+                            <span class="font-weight-light">俊飞</span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-6 col-12">
+                            <div class="mb-2">
+                                <i class="bi bi-gender-male"></i>
+                                <span class="text-gray font-weight-lighter">性&emsp;&emsp;别: </span>
+                                <span class="">男</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-12">
+                            <div class="">
+                                <i class="bi bi-envelope"></i>
+                                <span class="text-gray font-weight-lighter">邮&emsp;&emsp;箱: </span>
+                                <span class="">1075534380@qq.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-6 col-12">
+                            <div class="mb-2">
+                                <i class="bi bi-telephone"></i>
+                                <span class="text-gray font-weight-lighter">联系方式: </span>
+                                <span class="">17359105989</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-12">
+                            <div class="">
+                                <i class="bi bi-buildings"></i>
+                                <span class="text-gray font-weight-lighter">毕业大学: </span>
+                                <span class="">集美大学</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    <section class="mb-2" style="border-bottom: thick solid #54AFE4;">
+                        <h4 class="font-weight-bold text-decoration-underline color">掌握技能</h4>
+                        <ul>
+                            <li>
+                                <span class="font-weight-bold">后端开发:</span>
+                                了解 Java 编程语言，使用过 spring-framework, spring-boot,
+                                spring-security 等编写项目，研究过部分其源代码。使用过 Thymeleaf 模板。
+                            </li>
+                            <li>
+                                <span class="font-weight-bold">数据库:</span>
+                                了解 MySql 语言，使用过 JDBC, Mybatis，Jpa 等编写过代码，知道如何用 Flyway 对数据库变化进行版本控制。</li>
+                            <li>
+                                <span class="font-weight-bold">前端开发:</span>
+                                对前端 Html, Css, Js 有所了解，懂得使用 Vite，使用过 BootStrap, Jquery, Jps编写过项目，对 Vue 有所了解，懂得前后端分离的方法。</li>
+                            <li>
+                                <span class="font-weight-bold">Docker:</span>
+                                使用过 Docker 的 Mysql, Redis 等镜像。
+                            </li>
+                            <li>
+                                <span class="font-weight-bold">云服务器:</span>
+                                懂得简单使用云服务器，建立连接，传输文件，部署应用等。
+                            </li>
+                            <li>
+                                了解一些基本的 Git, Linux, Vim 命令。
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4 class="font-weight-bold text-decoration-underline color">项目经历</h4>
+                        <ul>
+                            <li>
+                                <span class="font-weight-bold">个人博客网站：</span>
+                                实现基本的博客文章的增删改查，使用 spring-boot 对其进行保护，实现文章的在线添加，对其中的图片进行上传保存。并最终部署至云服务器。
+                                地址：<a href="http://8.134.239.156">http://8.134.239.156</a>
+                            </li>
+                            <li>
+                                <span class="font-weight-bold">校对系统：</span>
+                                源码地址：<a href="https://github.com/zszdmzmm1/spring-boot-proofread">https://github.com/zszdmzmm1/spring-boot-proofread</a>
+                            </li>
+                            <li>
+                                <span class="font-weight-bold">谷歌浏览器B站视频集合计时插件：</span>
+                                在B站的分p视频和视频集合界面显示所有视频剩余时间，并支持快捷键开启与关闭。
+                                源码地址：<a href="https://github.com/zszdmzmm1/bilibili-plugin">https://github.com/zszdmzmm1/bilibili-plugin</a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
