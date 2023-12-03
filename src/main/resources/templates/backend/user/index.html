@@ -1,27 +1,49 @@
-<div th:replace="~{backend/app :: layout(admin-users, _, ~{::#main_card}, _)}" xmlns:th="http://www.thymeleaf.org">
-    <section class="content" id="main_card">
-
-        <div class="card">
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="user, stats:${page.getContent()}">
-                            <td th:text="${stats.count}"></td>
-                            <td th:text="${user.name}"></td>
-                            <td th:text="${user.email}"></td>
-                        </tr>
-                    </tbody>
-                </table>
+<div th:replace="~{backend/app :: layout(admin-users, _, ~{::#main}, _)}" xmlns:th="http://www.thymeleaf.org">
+    <div class="content-wrapper" id="main">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>用户列表</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Users</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="user, stats:${page.getContent()}">
+                                            <td th:text="${stats.count}"></td>
+                                            <td th:text="${user.name}"></td>
+                                            <td th:text="${user.email}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <div th:replace="~{fragment :: #pagination-container}"></div>
+                    </div>
+                </div>
             </div>
-            <!-- /.card-body -->
-        </div>
-        <div th:replace="~{fragment :: #pagination-container}"></div>
-    </section>
+        </section>
+    </div>
 </div>

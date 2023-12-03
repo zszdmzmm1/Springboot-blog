@@ -1,13 +1,33 @@
-<div th:replace="~{backend/app :: layout(更新post, ~{fragment :: #css_content}, ~{::#main_card}, ~{fragment :: #js_content})}" xmlns:th="http://www.thymeleaf.org">
-    <div class="content" id="main_card">
-        <div class="card">
-            <form id="post-form" method="post" action="#" th:action="@{/admin/post/update}" enctype="multipart/form-data" th:object="${post}">
-                <div th:replace="~{fragment::#post-form-item}"></div>
-                <input type="hidden" name="_method" value="PUT">
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">更新</button>
+<div th:replace="~{backend/app :: layout(更新post, ~{fragment :: #css_content}, ~{::#main}, ~{fragment :: #js_content})}"
+     xmlns:th="http://www.thymeleaf.org">
+    <div id="main" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12 d-flex justify-content-between">
+                        <h1>Edit Post</h1>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <form id="post-form" method="post" action="#" th:action="@{/admin/post/update}"
+                                  enctype="multipart/form-data" th:object="${post}" class="mb-0">
+                                <div th:replace="~{fragment::#post-form-item}"></div>
+                                <input type="hidden" name="_method" value="PUT">
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">更新</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
