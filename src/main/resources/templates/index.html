@@ -1,8 +1,8 @@
 <div th:replace="~{app :: layout(主页, _, ~{::#site_info}, ~{::#main_content}, _)}" xmlns:th="http://www.thymeleaf.org">
     <div class="site-info text-center" id="site_info">
-        <h1 class="site-title animate__animated animate__swing animate__delay-4s">网站标题</h1>
+        <h1 class="site-title animate__animated animate__swing animate__delay-4s">zszdmzmm的个人网站</h1>
         <div id="typed-strings">
-            <p class="site-subtitle lead text-muted">用简短的一段描述介绍自己的网站</p>
+            <p class="site-subtitle lead text-muted">这是一个个人搭建的简单博客网站，记录了一些本人的学习成果与学习记录。</p>
         </div>
         <span class="site-subtitle lead text-muted" id="typed"></span>
     </div>
@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-left align-self-center">
-                        <h3 class="feature-title">简历</h3>
+                        <h3 class="feature-title"><a href="#" th:href="@{/resume}" class="primary-link">简历</a></h3>
                         <p class="lead text-muted">用简短的一段描述介绍简历</p>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0">
@@ -28,12 +28,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-right order-1 order-lg-2 align-self-center">
-                        <h3 class="feature-title">博客</h3>
-                        <p class="lead text-muted">用简短的一段描述介绍博客</p>
+                        <h3 class="feature-title"><a th:href="@{/posts}" class="primary-link">博客</a></h3>
+                        <p class="lead text-muted">zszdmzmm的个人文章记录。</p>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0 order-2 order-lg-1">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid shadow" th:src="@{/img/about/videos.png}" src="/img/about/videos.png"
+                            <img class="img-fluid shadow" th:src="@{/img/about/posts.png}" src="/img/about/videos.png"
                                  alt="design">
                         </div>
                     </div>
@@ -45,8 +45,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-left align-self-center">
-                        <h3 class="feature-title">模块X</h3>
-                        <p class="lead text-muted">用简短的一段描述介绍模块X</p>
+                        <h3 class="feature-title"><a th:href="@{/posts/80}" class="primary-link">B站视频剩余时间显示插件</a> </h3>
+                        <p class="lead text-muted">在B站集合视频页面内显示该集合剩余播放时间。</p>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0">
                         <div class="text-center" data-aos="zoom-in">
@@ -62,12 +62,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-right order-1 order-lg-2 align-self-center">
-                        <h3 class="feature-title">模块Z</h3>
-                        <p class="lead text-muted">用简短的一段描述介绍模块Y</p>
+                        <h3 class="feature-title"><a href="https://github.com/zszdmzmm1?tab=repositories" class="primary-link">我的GitHub</a></h3>
+                        <p class="lead text-muted">我的GitHub仓库, 既是学习成果，也是学习笔记~</p>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0 order-2 order-lg-1">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid shadow" th:src="@{/img/about/posts.png}" src="/img/about/posts.png" alt="life">
+                            <img class="img-fluid shadow" th:src="@{/img/about/videos.png}" src="/img/about/posts.png" alt="life">
                         </div>
                     </div>
                 </div>
