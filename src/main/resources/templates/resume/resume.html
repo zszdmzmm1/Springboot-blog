@@ -16,6 +16,15 @@
     li {
         margin-bottom: 1rem;
     }
+
+    .img-shadow {
+        border: 1px solid black;
+    }
+    .img-shadow:hover {
+        border: none;
+        transform: scale(20, 20);
+        transition-duration: 1.5s;
+    }
 </style>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHe','Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', sans-serif; background-color: grey">
     <div class="container mx-auto p-4" style="max-width:900px; background-color: white;">
@@ -125,6 +134,11 @@
                                     <a href="http://8.134.239.156/posts/78">
                                     如何利用 Linux 云服务器搭建一个简单的Minecraft服务器。
                                     </a>
+                                    <span class="float-end">
+                                        <span>预览：</span>
+                                        <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/mc.gif}"
+                                             src="/img/about/mc.gif" alt="我的世界服务器" width="40">
+                                    </span>
                                 </p>
                             </li>
                         </ul>
@@ -137,7 +151,7 @@
                         <ul>
                             <li>
                                 <span class="font-weight-bold">概述：</span>
-                                <p>热衷于接触新知识，有一定的阅读文档的经验与自我学习能力。在努力解决语言表达能力不够优秀的烦恼。希望找到一份能祝我进一步成长的工作。</p>
+                                <p>热衷于接触新知识，有一定的阅读文档的经验与自我学习能力。在努力解决语言表达能力不够优秀的烦恼。希望找到一份帮助我进一步成长的工作。</p>
                             </li>
                             <li>
                                 <span class="font-weight-bold">爱好：</span>
