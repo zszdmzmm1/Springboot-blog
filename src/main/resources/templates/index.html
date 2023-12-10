@@ -26,12 +26,14 @@
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-start align-self-center">
                         <h3 class="feature-title"><a href="#" th:href="@{/resume}" class="primary-link display-5 text-decoration-none">我的简历</a></h3>
-                        <p class="lead text-muted">简历展现了我的我学所做，但不是我的所有。</p>
+                        <p class="lead text-muted">一份展现了我所学所做的简历，一个希望被更加深入认识的自己。</p>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/resources.png}"
-                                 src="/img/about/resources.png" alt="coding">
+                            <a th:href="@{/resume}">
+                                <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/resources.png}"
+                                            src="/img/about/resources.png" alt="coding">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -47,8 +49,10 @@
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0 order-2 order-lg-1">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/posts.png}" src="/img/about/videos.png"
-                                 alt="design">
+                            <a th:href="@{/posts}">
+                                <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/posts.png}" src="/img/about/videos.png"
+                                     alt="design">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -59,12 +63,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 text-center text-lg-start order-1 order-lg-1 align-self-center">
-                        <h3 class="feature-title"><a href="http://8.134.239.156/posts/78" class="primary-link display-5 text-decoration-none">我的世界服务器</a></h3>
+                        <h3 class="feature-title"><a href="http://8.134.239.156/posts/78" th:href="@{http://8.134.239.156/posts/78}" class="primary-link display-5 text-decoration-none">我的世界服务器</a></h3>
                         <p class="lead text-muted">学习了知识后，我决定做一些以前想做却望而却步的，唯有如此，才能让我深刻的体会到了知识的价值。</p>
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0 order-2 order-lg-2">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/mc.png}" alt="life">
+                            <a th:href="@{http://8.134.239.156/posts/78}">
+                                <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/mc.png}" alt="life" src="/img/about/mc.png">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -80,8 +86,10 @@
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0 order-2 order-lg-1">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/docs.png}" src="/img/about/docs.png"
-                                 alt="coding">
+                            <a th:href="@{/posts/80}">
+                                <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/docs.png}" src="/img/about/docs.png"
+                                     alt="coding">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +105,9 @@
                     </div>
                     <div class="col-lg-6 mt-3 mt-lg-0">
                         <div class="text-center" data-aos="zoom-in">
-                            <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/videos.png}" alt="life">
+                            <a th:href="@{https://github.com/zszdmzmm1?tab=repositories}">
+                                <img class="img-fluid img-shadow transition-3d-hover" th:src="@{/img/about/videos.png}" alt="life" src="/img/about/videos.png">
+                            </a>
                         </div>
                     </div>
                 </div>
